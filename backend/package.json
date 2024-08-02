@@ -1,0 +1,31 @@
+{
+  "name": "kdzkai-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://git.udit.krd/uditkarode/kdzkai-backend",
+  "author": "Udit Karode <udit.karode@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@koa/router": "^12.0.0",
+    "koa": "^2.14.2",
+    "koa-bodyparser": "^4.4.1",
+    "koa-cors": "^0.0.16",
+    "koa-router": "^12.0.0",
+    "kuromoji": "^0.1.2",
+    "unofficial-jisho-api": "^2.3.2"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.13.6",
+    "@types/koa-bodyparser": "^4.3.10",
+    "@types/koa-cors": "^0.0.2",
+    "@types/koa__router": "^12.0.0",
+    "@types/kuromoji": "^0.1.1",
+    "@types/node": "^20.4.1",
+    "tsx": "^3.12.7",
+    "typescript": "^5.1.6"
+  },
+  "scripts": {
+    "dev": "tsx index.ts",
+    "prod": "tsc --pretty && node dist"
+  }
+}
