@@ -15,5 +15,3 @@ spec:
       containers:
         - name: backend
           image: backend
-          ports:
-            - containerPort: 52523
