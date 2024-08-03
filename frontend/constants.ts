@@ -1,1 +1,1 @@
-export const API_HOST = "https://kz.udit.krd";
+export const API_HOST = "https://bunseki.udit.krd";
