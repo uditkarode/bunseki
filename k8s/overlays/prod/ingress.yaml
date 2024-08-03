@@ -1,0 +1,45 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-to-index
+  namespace: bunseki
+spec:
+  errors:
+    status:
+      - "404"
+    service:
+      name: frontend
+      port: 80
+    query: "/"
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: fe-route
+  namespace: bunseki
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`bunseki.udit.krd`) && PathPrefix(`/`) && !PathPrefix(`/api`)
+      kind: Rule
+      services:
+        - name: frontend
+          port: 80
+      middlewares:
+        - name: redirect-to-index
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: be-route
+  namespace: bunseki
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`bunseki.udit.krd`) && PathPrefix(`/api`)
+      kind: Rule
+      services:
+        - name: backend
+          port: 52523
