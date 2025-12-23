@@ -34,56 +34,29 @@ jobs:
           echo "${{ secrets.KUBECONFIG }}" > ./kubeconfig
           echo "KUBECONFIG=$PWD/kubeconfig" >> $GITHUB_ENV
 
-      - name: Get commit hash
-        run: echo "SHA=$(git rev-parse HEAD)" >> $GITHUB_ENV
-
-      - name: Cache Docker layers
-        uses: actions/cache@v4
-        with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ hashFiles('**/Dockerfile') }}
-
-      - name: Build backend image with cache for amd64
+      - name: Build and push backend image
         uses: docker/build-push-action@v5
         with:
           context: ./backend
-          tags: ${{ secrets.REGISTRY_HOST }}/bunseki/backend:${{ env.SHA }}
-          push: false
+          tags: ${{ secrets.REGISTRY_HOST }}/bunseki/backend:${{ github.sha }}
+          push: true
           platforms: linux/amd64
-          cache-from: type=local,src=/tmp/.buildx-cache/backend
-          cache-to: type=local,dest=/tmp/.buildx-cache/backend-new
-          load: true
+          cache-from: type=gha,scope=backend
+          cache-to: type=gha,mode=max,scope=backend
 
-      - name: Push backend image
-        run: |
-          rm -rf /tmp/.buildx-cache/backend
-          mv /tmp/.buildx-cache/backend-new /tmp/.buildx-cache/backend
-          docker push ${{ secrets.REGISTRY_HOST }}/bunseki/backend:${{ env.SHA }}
-
-      - name: Build frontend image with cache for amd64
+      - name: Build and push frontend image
         uses: docker/build-push-action@v5
         with:
           context: ./frontend
-          tags: ${{ secrets.REGISTRY_HOST }}/bunseki/frontend:${{ env.SHA }}
-          push: false
+          tags: ${{ secrets.REGISTRY_HOST }}/bunseki/frontend:${{ github.sha }}
+          push: true
           platforms: linux/amd64
-          cache-from: type=local,src=/tmp/.buildx-cache/frontend
-          cache-to: type=local,dest=/tmp/.buildx-cache/frontend-new
-          load: true
+          cache-from: type=gha,scope=frontend
+          cache-to: type=gha,mode=max,scope=frontend
 
-      - name: Push frontend image
-        run: |
-          rm -rf /tmp/.buildx-cache/frontend
-          mv /tmp/.buildx-cache/frontend-new /tmp/.buildx-cache/frontend
-          docker push ${{ secrets.REGISTRY_HOST }}/bunseki/frontend:${{ env.SHA }}
-
-      - name: Set new images to kustomization.yaml
+      - name: Deploy to Kubernetes
         run: |
           cd k8s/overlays/prod
-          kustomize edit set image backend='${{ secrets.REGISTRY_HOST }}/bunseki/backend:${{ env.SHA }}'
-          kustomize edit set image frontend='${{ secrets.REGISTRY_HOST }}/bunseki/frontend:${{ env.SHA }}'
-
-      - name: Apply built kubernetes config
-        run: |
-          cd k8s/overlays/prod
+          kustomize edit set image backend='${{ secrets.REGISTRY_HOST }}/bunseki/backend:${{ github.sha }}'
+          kustomize edit set image frontend='${{ secrets.REGISTRY_HOST }}/bunseki/frontend:${{ github.sha }}'
           kustomize build | kubectl apply -f -
