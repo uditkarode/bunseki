@@ -29,7 +29,7 @@ import Spacer from "@/components/spacer.vue";
 import Editor from "@/components/editor.vue";
 import AnalysisResult from "@/components/analysis-result.vue";
 
-import { IpadicFeatures } from "kuromoji";
+import { type IpadicFeatures } from "kuromoji";
 import { API_HOST } from "@/constants";
 
 type Err = string;
