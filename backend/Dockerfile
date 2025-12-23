@@ -11,5 +11,5 @@ COPY . .
 
 EXPOSE 52523
 
-CMD yarn prod
+CMD bun run prod
 
