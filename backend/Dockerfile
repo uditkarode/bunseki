@@ -1,11 +1,11 @@
-FROM node:23.2-alpine
+FROM oven/bun:latest
 
 WORKDIR /usr/src/app
 
 COPY package.json ./
-COPY yarn.lock ./
+COPY bun.lock ./
 
-RUN yarn --frozen-lockfile
+RUN bun install --frozen-lockfile
 
 COPY . .
 
