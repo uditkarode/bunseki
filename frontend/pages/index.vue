@@ -101,12 +101,12 @@ async function analyse(jpText: string) {
 
 .home__separator-1 {
   background: linear-gradient(276deg, #1997cd 0%, rgba(49, 239, 216, 0) 100%);
-  animation: wavySlide 1s linear infinite reverse;
+  animation: wavySlide 3s linear infinite;
 }
 
 .home__separator-2 {
   background: linear-gradient(90deg, #1997cd 0%, rgba(49, 239, 216, 0) 100%);
-  animation: wavySlide 1s linear infinite;
+  animation: wavySlide 3s linear infinite reverse;
 }
 
 /* Component Styles */
