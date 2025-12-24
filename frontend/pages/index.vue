@@ -3,7 +3,7 @@
 
   <div class="home">
     <!-- title -->
-    <p class="home__title jp-text">分析ツール</p>
+    <p class="home__title">分析ツール</p>
 
     <!-- edit box and submit button -->
     <Editor @analyse="analyse" />
@@ -14,7 +14,7 @@
     <div class="w-full flex items-center">
       <div class="home__generic-separator home__separator-1" />
       <Spacer :horizontal="24" />
-      <p class="home__title jp-text">分析</p>
+      <p class="home__title">分析</p>
       <Spacer :horizontal="24" />
       <div class="home__generic-separator home__separator-2" />
     </div>

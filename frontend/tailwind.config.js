@@ -2,7 +2,11 @@
 module.exports = {
   content: [],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['"Zen Maru Gothic"', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }

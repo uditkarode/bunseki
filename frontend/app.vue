@@ -15,6 +15,7 @@ body {
   width: 100%;
   height: 100%;
   background: #0d1116;
+  font-family: 'Zen Maru Gothic', sans-serif;
 }
 
 #__nuxt {
@@ -32,13 +33,5 @@ h4,
 h5,
 h6 {
   color: #fbfbfb;
-}
-
-.jp-text {
-  font-family: Noto Serif JP;
-}
-
-.en-text {
-  font-family: IBM Plex Sans;
 }
 </style>

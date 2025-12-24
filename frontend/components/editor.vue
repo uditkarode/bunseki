@@ -10,10 +10,10 @@
           target.style.height = 'auto';
           target.style.height = `${target.scrollHeight}px`;
         }"
-      class="container jp-input jp-text"
+      class="container jp-input"
     />
 
-    <button class="submit-button" @click="$emit('analyse', inputRef?.value)">
+    <button class="submit-button" @click="$emit('analyse', inputRef?.value ?? '')">
       <p class="submit-button__text">分析</p>
     </button>
   </div>

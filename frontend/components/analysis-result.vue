@@ -1,17 +1,17 @@
 <template>
   <!-- If no search has been performed yet  -->
-  <p class="msg jp-text" v-if="typeof features == 'undefined'">
-     入力して「分析」ボタンを押してください
+  <p class="msg" v-if="typeof features == 'undefined'">
+     文字の壁、読みやすくしましょう！
   </p>
 
   <!-- If a search has been performed but the contents have not loaded -->
-  <p class="msg-big jp-text" v-else-if="features === 'loading'">
+  <p class="msg-big" v-else-if="features === 'loading'">
     ロード中。。。
   </p>
 
   <p class="msg-big" v-else-if="typeof features === 'string'">
-    <span class="en-text" style="color: rgb(222, 164, 164); margin-right: 12px">ERROR:</span>
-    <span class="jp-text" style="color: rgb(215, 215, 215)">{{ features }}</span>
+    <span style="color: rgb(222, 164, 164); margin-right: 12px">ERROR:</span>
+    <span style="color: rgb(215, 215, 215)">{{ features }}</span>
   </p>
 
   <div v-else class="root">
@@ -28,7 +28,7 @@
 
         <div
           v-else-if="entry.surface_form && entry.surface_form.trim()"
-          class="analysis-container-item jp-text"
+          class="analysis-container-item"
           :style="{ backgroundColor: COLORS[entry.pos] }"
           @mouseenter="(event) => startHover(entry, event)"
           @mousemove="updateTooltipPosition"
@@ -51,26 +51,26 @@
         >
           <!-- Word and Reading -->
           <div class="tooltip-header">
-            <span class="tooltip-word jp-text">{{ hoveredEntry.surface_form }}</span>
-            <span class="tooltip-reading jp-text" v-if="hoveredEntry.reading">
+            <span class="tooltip-word">{{ hoveredEntry.surface_form }}</span>
+            <span class="tooltip-reading" v-if="hoveredEntry.reading">
               {{ toHiragana(hoveredEntry.reading) }}
             </span>
           </div>
 
           <!-- Loading State -->
-          <p v-if="tooltipDetails === 'loading'" class="tooltip-loading en-text">
+          <p v-if="tooltipDetails === 'loading'" class="tooltip-loading">
             Loading...
           </p>
 
           <!-- Error State -->
-          <p v-else-if="typeof tooltipDetails === 'string'" class="tooltip-error en-text">
+          <p v-else-if="typeof tooltipDetails === 'string'" class="tooltip-error">
             {{ tooltipDetails }}
           </p>
 
           <!-- Details -->
           <template v-else-if="tooltipDetails">
             <!-- Meanings -->
-            <div class="tooltip-meanings en-text" v-if="tooltipDetails.meanings.length">
+            <div class="tooltip-meanings" v-if="tooltipDetails.meanings.length">
               <p class="tooltip-label">Meanings:</p>
               <ul>
                 <li v-for="(meaning, i) in tooltipDetails.meanings" :key="i">
@@ -201,7 +201,7 @@ function cancelHover() {
 }
 
 .msg {
-  color: #6c6b6b;
+  color: #889ea9;
   opacity: 0.6;
   font-size: large;
   margin-bottom: 60px;
