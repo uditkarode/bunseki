@@ -47,6 +47,10 @@ defineEmits<{
   height: min-content;
 }
 
+.jp-input::placeholder {
+  color: #565c65;
+}
+
 .submit-button {
   background: #0c322a;
   height: 100%;
