@@ -308,10 +308,11 @@ function cancelHover() {
 .tooltip-label {
   color: #74e4de;
   font-weight: 600;
+  font-size: 18px;
 }
 
 .tooltip-meanings {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .tooltip-meanings p {
