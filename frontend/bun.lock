@@ -3,7 +3,7 @@
   "configVersion": 0,
   "workspaces": {
     "": {
-      "name": "kdzkai",
+      "name": "bunseki",
       "dependencies": {
         "wanakana": "^5.3.1",
       },

@@ -1,8 +1,8 @@
 {
-  "name": "kdzkai-backend",
+  "name": "bunseki-backend",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://git.udit.krd/uditkarode/kdzkai-backend",
+  "repository": "https://git.udit.krd/uditkarode/bunseki-backend",
   "author": "Udit Karode <udit.karode@gmail.com>",
   "license": "MIT",
   "dependencies": {
@@ -12,7 +12,7 @@
     "koa": "^3.1.1",
     "koa-router": "^14.0.0",
     "kuromoji": "^0.1.2",
-    "unofficial-jisho-api": "^2.3.4"
+    "jmdict-simplified-node": "^1.1.2"
   },
   "devDependencies": {
     "@types/koa": "^3.0.1",

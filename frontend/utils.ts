@@ -9,7 +9,6 @@ export interface PhraseDetail {
 }
 
 export interface Details {
-  jlpt: string;
   meanings: string[];
 }
 

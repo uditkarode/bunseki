@@ -69,12 +69,6 @@
 
           <!-- Details -->
           <template v-else-if="tooltipDetails">
-            <!-- JLPT -->
-            <div class="tooltip-jlpt en-text" v-if="tooltipDetails.jlpt">
-              <span class="tooltip-label">Rank:</span>
-              <span>{{ tooltipDetails.jlpt }}</span>
-            </div>
-
             <!-- Meanings -->
             <div class="tooltip-meanings en-text" v-if="tooltipDetails.meanings.length">
               <p class="tooltip-label">Meanings:</p>
@@ -158,7 +152,6 @@ function startHover(entry: IpadicFeatures, event: MouseEvent) {
         const detailEntry = response[0];
         if (detailEntry) {
           tooltipDetails.value = {
-            jlpt: detailEntry.jlpt.join(", "),
             meanings: [...new Set(detailEntry.senses.map((sense) =>
               sense.english_definitions.join(", ")
             ).map(w => w.toLowerCase()))],
@@ -170,7 +163,7 @@ function startHover(entry: IpadicFeatures, event: MouseEvent) {
     } catch (e) {
       tooltipDetails.value = "Error loading details";
     }
-  }, 1000);
+  }, 500);
 }
 
 function updateTooltipPosition(event: MouseEvent) {
@@ -310,13 +303,6 @@ function cancelHover() {
 .tooltip-error {
   color: #f85149;
   font-size: 14px;
-}
-
-.tooltip-jlpt {
-  display: flex;
-  gap: 8px;
-  font-size: 14px;
-  margin-bottom: 8px;
 }
 
 .tooltip-label {
