@@ -130,7 +130,7 @@ function startHover(entry: IpadicFeatures, event: MouseEvent) {
   // Store initial position
   tooltipPosition.value = { x: event.clientX, y: event.clientY };
   
-  // Set a 1 second delay before showing tooltip
+  // Show tooltip instantly
   hoverTimeout = setTimeout(async () => {
     hoveredEntry.value = entry;
     showTooltip.value = true;
@@ -163,7 +163,7 @@ function startHover(entry: IpadicFeatures, event: MouseEvent) {
     } catch (e) {
       tooltipDetails.value = "Error loading details";
     }
-  }, 500);
+  }, 0);
 }
 
 function updateTooltipPosition(event: MouseEvent) {
