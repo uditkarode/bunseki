@@ -64,11 +64,29 @@ async function analyse(jpText: string) {
 
 <style scoped>
 /* Generic Styles */
+@keyframes wavySlide {
+  0% {
+    -webkit-mask-position: 0 0;
+    mask-position: 0 0;
+  }
+  100% {
+    -webkit-mask-position: -20px 0;
+    mask-position: -20px 0;
+  }
+}
+
 .home__generic-separator {
-  border-radius: 6px;
   min-height: 6px;
   max-height: 6px;
   flex: 1;
+
+  /* Wavy Mask */
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='10' viewBox='0 0 20 10'%3E%3Cpath d='M0 5 C5 5 5 0 10 5 S15 5 20 5' stroke='white' stroke-width='4' fill='none' /%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='10' viewBox='0 0 20 10'%3E%3Cpath d='M0 5 C5 5 5 0 10 5 S15 5 20 5' stroke='white' stroke-width='4' fill='none' /%3E%3C/svg%3E");
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+  -webkit-mask-size: 20px 100%;
+  mask-size: 20px 100%;
 }
 
 .home__bg-blog {
@@ -83,10 +101,12 @@ async function analyse(jpText: string) {
 
 .home__separator-1 {
   background: linear-gradient(276deg, #1997cd 0%, rgba(49, 239, 216, 0) 100%);
+  animation: wavySlide 1s linear infinite reverse;
 }
 
 .home__separator-2 {
   background: linear-gradient(90deg, #1997cd 0%, rgba(49, 239, 216, 0) 100%);
+  animation: wavySlide 1s linear infinite;
 }
 
 /* Component Styles */
