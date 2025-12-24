@@ -24,7 +24,7 @@
     "typescript": "^5.5.4"
   },
   "scripts": {
-    "dev": "tsx index.ts",
-    "prod": "tsc --pretty && node dist"
+    "dev": "bun run index.ts",
+    "prod": "bun run index.ts"
   }
 }
