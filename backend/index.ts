@@ -1,8 +1,8 @@
 import Router from "@koa/router";
 import { getTokeniser } from "./utils";
 import Koa from "koa";
-import cors from "koa-cors";
-import bodyParser from "koa-bodyparser";
+import cors from "@koa/cors";
+import { bodyParser } from "@koa/bodyparser";
 import process from "process";
 import JishoAPI from "unofficial-jisho-api";
 
@@ -81,8 +81,8 @@ async function main() {
     return r;
   })();
 
-  app.use(router.allowedMethods());
   app.use(router.routes());
+  app.use(router.allowedMethods());
 
   console.log(`Running on port: ${port}`);
   app.listen({ port });
